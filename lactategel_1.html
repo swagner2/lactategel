@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LactateGel — The next endurance fuel is coming</title>
+<meta name="description" content="LactateGel delivers exogenous lactate alongside carbohydrate — a new approach to endurance fueling. Join the waitlist." />
+<style>
+  :root{
+    --ink:#0d1520;
+    --ink-soft:#41505f;
+    --line:#e4e9ee;
+    --line-soft:#eef2f6;
+    --bg:#ffffff;
+    --bg-tint:#f6f9fb;
+    --accent:#00a878;      /* lactate-green "fuel" accent */
+    --accent-deep:#008a63;
+    --accent-wash:#e6f7f0;
+    --radius:14px;
+    --mono:"SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+  /* ---------- top bar ---------- */
+  header{
+    border-bottom:1px solid var(--line-soft);
+    position:sticky;top:0;background:rgba(255,255,255,.82);
+    backdrop-filter:saturate(180%) blur(12px);z-index:20;
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:1.18rem}
+  .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-wash)}
+  .tag{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent-deep);border:1px solid var(--accent);border-radius:999px;
+    padding:6px 12px;background:var(--accent-wash);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 64px;text-align:center;position:relative}
+  .eyebrow{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:22px;
+  }
+  .eyebrow b{color:var(--accent-deep)}
+  h1{
+    font-size:clamp(2.3rem,6vw,4.2rem);line-height:1.04;letter-spacing:-.035em;
+    font-weight:760;max-width:16ch;margin:0 auto 22px;
+  }
+  h1 .hl{color:var(--accent-deep)}
+  .lede{
+    font-size:clamp(1.05rem,2.2vw,1.28rem);color:var(--ink-soft);
+    max-width:56ch;margin:0 auto 40px;
+  }
+
+  /* ---------- signup ---------- */
+  .signup{max-width:520px;margin:0 auto}
+  form{display:flex;gap:10px;flex-wrap:wrap}
+  input[type=email]{
+    flex:1 1 240px;min-width:0;font-size:1rem;font-family:var(--sans);
+    padding:16px 18px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--bg);color:var(--ink);transition:border-color .15s,box-shadow .15s;
+  }
+  input[type=email]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-wash)}
+  button{
+    flex:0 0 auto;font-size:1rem;font-weight:640;font-family:var(--sans);cursor:pointer;
+    padding:16px 26px;border:0;border-radius:var(--radius);color:#fff;
+    background:var(--accent);transition:background .15s,transform .05s;
+  }
+  button:hover{background:var(--accent-deep)}
+  button:active{transform:translateY(1px)}
+  .fineprint{font-size:.82rem;color:var(--ink-soft);margin-top:14px}
+  .confirm{
+    display:none;background:var(--accent-wash);border:1px solid var(--accent);
+    border-radius:var(--radius);padding:22px 24px;text-align:left;
+  }
+  .confirm.show{display:block;animation:pop .3s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .confirm strong{display:block;color:var(--accent-deep);font-size:1.05rem;margin-bottom:4px}
+  .confirm span{color:var(--ink-soft);font-size:.95rem}
+
+  /* ---------- product hint ---------- */
+  .spec{
+    margin:70px auto 0;max-width:640px;border:1px solid var(--line);border-radius:20px;
+    padding:34px;display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;
+    background:linear-gradient(180deg,var(--bg-tint),#fff);
+  }
+  .spec .num{font-size:2.6rem;font-weight:740;letter-spacing:-.03em;line-height:1}
+  .spec .num .u{font-size:1rem;font-weight:600;color:var(--ink-soft);margin-left:2px}
+  .spec .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
+  .spec .div{width:1px;height:52px;background:var(--line)}
+  .spec .c .num{color:var(--accent-deep)}
+
+  /* ---------- science row ---------- */
+  section.science{padding:96px 0 40px;border-top:1px solid var(--line-soft);margin-top:96px}
+  .kicker{text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:16px}
+  .h2{text-align:center;font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.03em;font-weight:720;max-width:20ch;margin:0 auto 12px}
+  .sub{text-align:center;color:var(--ink-soft);max-width:56ch;margin:0 auto 56px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;background:#fff;transition:border-color .2s,transform .2s}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .card .ix{font-family:var(--mono);font-size:.72rem;color:var(--accent-deep);letter-spacing:.1em}
+  .card h3{font-size:1.18rem;letter-spacing:-.02em;margin:14px 0 8px;font-weight:680}
+  .card p{color:var(--ink-soft);font-size:.96rem}
+
+  /* ---------- closing cta ---------- */
+  .closing{margin:100px 0 0;background:var(--ink);color:#fff;border-radius:26px;padding:66px 32px;text-align:center}
+  .closing h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;font-weight:720;max-width:20ch;margin:0 auto 16px}
+  .closing p{color:#aeb9c4;max-width:52ch;margin:0 auto 34px}
+  .closing form input[type=email]{background:#141d29;border-color:#28323f;color:#fff}
+  .closing form input[type=email]::placeholder{color:#78848f}
+  .closing form input[type=email]:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,168,120,.22)}
+  .closing .fineprint{color:#7f8b96}
+  .closing .signup{max-width:480px}
+
+  /* ---------- footer ---------- */
+  footer{padding:48px 0 60px;text-align:center;color:var(--ink-soft);font-size:.88rem}
+  footer .brand{justify-content:center;font-size:1rem;margin-bottom:12px;color:var(--ink)}
+  .disc{max-width:60ch;margin:18px auto 0;font-size:.76rem;color:#9aa6b1;line-height:1.5}
+
+  @media(max-width:720px){
+    .grid{grid-template-columns:1fr}
+    .spec{gap:28px}
+    .spec .div{display:none}
+    .hero{padding:64px 0 48px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand"><span class="dot"></span>LactateGel</div>
+    <span class="tag">Coming soon</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Endurance fueling · <b>rethought</b></div>
+    <h1>The next endurance fuel is <span class="hl">almost here.</span></h1>
+    <p class="lede">
+      For decades lactate was treated as the enemy. The science says otherwise — it's one of
+      the body's preferred fuels and a powerful metabolic signal. LactateGel puts it to work,
+      delivering exogenous lactate alongside fast carbohydrate in a single stomach-friendly gel.
+    </p>
+
+    <div class="signup">
+      <form id="form-top" novalidate>
+        <input type="email" id="email-top" placeholder="you@email.com" aria-label="Email address" required />
+        <button type="submit">Join the waitlist</button>
+      </form>
+      <p class="fineprint">Be first to know when it launches. No spam — just the drop.</p>
+
+      <div class="confirm" id="confirm-top" role="status" aria-live="polite">
+        <strong>You're on the list.</strong>
+        <span>We'll email you the moment LactateGel goes live. Welcome aboard.</span>
+      </div>
+    </div>
+
+    <!-- product spec hint -->
+    <div class="spec">
+      <div>
+        <div class="num">40<span class="u">g</span></div>
+        <div class="lbl">Carbohydrate</div>
+      </div>
+      <div class="div"></div>
+      <div class="c">
+        <div class="num">5<span class="u">g</span></div>
+        <div class="lbl">Exogenous lactate</div>
+      </div>
+      <div class="div"></div>
+      <div>
+        <div class="num">pH<span class="u">7</span></div>
+        <div class="lbl">Stomach-friendly</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE -->
+  <section class="science">
+    <div class="kicker">Why lactate</div>
+    <div class="h2">A fuel, a shuttle, and a signal.</div>
+    <p class="sub">
+      Lactate isn't a waste product — it's central to how endurance athletes make and move energy.
+      LactateGel is built to harness three of its roles at once.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="ix">01 / FUEL</div>
+        <h3>Ready-to-burn energy</h3>
+        <p>Lactate is a rapidly oxidised fuel the body reaches for readily — potentially taking a
+           different absorption route than glucose and fructose.</p>
+      </div>
+      <div class="card">
+        <div class="ix">02 / SPARE</div>
+        <h3>Protect your glycogen</h3>
+        <p>At steady efforts, added lactate may help shift the fuel mix and spare precious glycogen
+           for when the race really demands it.</p>
+      </div>
+      <div class="card">
+        <div class="ix">03 / SIGNAL</div>
+        <h3>A metabolic messenger</h3>
+        <p>Beyond fuel, lactate signals the cell how to use other substrates — a role increasingly
+           recognised in exercise physiology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="closing">
+    <h2>Get early access when we launch.</h2>
+    <p>We're putting the finishing touches on it. Drop your email and you'll be first in line.</p>
+    <div class="signup">
+      <form id="form-bottom" novalidate>
+        <input type="email" id="email-bottom" placeholder="you@email.com" aria-label="Email address" required />
+        <button type="submit">Notify me</button>
+      </form>
+      <p class="fineprint">One email. When it's ready. That's it.</p>
+      <div class="confirm" id="confirm-bottom" role="status" aria-live="polite">
+        <strong>You're on the list.</strong>
+        <span>Thanks — we'll be in touch the second it drops.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="brand"><span class="dot"></span>LactateGel</div>
+  <div>lactategel.com · © 2026 LactateGel. All rights reserved.</div>
+  <p class="disc">
+    LactateGel is a sports nutrition product in development. Statements about lactate metabolism
+    reflect emerging exercise-physiology research; independent studies on this delivery approach
+    are ongoing. Not intended to diagnose, treat, cure, or prevent any disease.
+  </p>
+</footer>
+
+<script>
+  // Visual-only signup: validates, shows a thank-you confirmation, no data leaves the page.
+  // To collect real emails later, point each form's action at a form service (e.g. Formspree)
+  // or an email provider embed, and remove the preventDefault() handler below.
+  function wire(formId, inputId, confirmId){
+    var form = document.getElementById(formId);
+    var input = document.getElementById(inputId);
+    var confirm = document.getElementById(confirmId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var val = (input.value || '').trim();
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if(!ok){
+        input.focus();
+        input.style.borderColor = '#e0563f';
+        input.style.boxShadow = '0 0 0 4px rgba(224,86,63,.15)';
+        return;
+      }
+      form.style.display = 'none';
+      confirm.classList.add('show');
+    });
+    input.addEventListener('input', function(){
+      input.style.borderColor = '';
+      input.style.boxShadow = '';
+    });
+  }
+  wire('form-top','email-top','confirm-top');
+  wire('form-bottom','email-bottom','confirm-bottom');
+</script>
+
+</body>
+</html>
